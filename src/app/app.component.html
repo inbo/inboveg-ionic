@@ -15,9 +15,9 @@
         <ion-list id="labels-list">
           <ion-list-header>Offline beschikbaar</ion-list-header>
 
-          <ion-item *ngFor="let label of items | async" lines="none">
+          <ion-item (click)="openRecordings(label.survey.id.value)" *ngFor="let label of items | async" lines="none">
             <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label.name }}</ion-label>
+            <ion-label>{{ label.survey.name }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>

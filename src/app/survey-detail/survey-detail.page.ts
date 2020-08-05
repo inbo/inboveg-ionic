@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
@@ -22,7 +22,16 @@ export class SurveyDetailPage {
     }
 
     makeSurveyOfflineAvailable() {
-        this.firestore.doc(`users/kevin_vandenelshout/surveys/${this.survey.id.value}`).set(this.survey);
+        this.http.get('http://localhost:8080/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/recordings')
+            .subscribe(data => {
+                // @ts-ignore
+                const content = data.content;
+                this.firestore.doc(`users/kevin_vandenelshout/surveys/${this.survey.id.value}`).set({
+                    survey: this.survey,
+                    recordings: content
+                });
+            });
+
     }
 
 }

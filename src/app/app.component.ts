@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 
@@ -28,16 +28,13 @@ export class AppComponent implements OnInit {
         private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
-        private firestore: AngularFirestore
+        private firestore: AngularFirestore,
+        public router: Router
     ) {
         this.initializeApp();
 
         const collectionReference = this.firestore.collection(`users/kevin_vandenelshout/surveys`);
         this.items = collectionReference.valueChanges();
-        this.items.subscribe(value => {
-            console.log(value);
-        });
-        console.log(collectionReference);
     }
 
     initializeApp() {
@@ -52,5 +49,11 @@ export class AppComponent implements OnInit {
         if (path !== undefined) {
             this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
         }
+    }
+
+    openRecordings(surveyId: string) {
+        console.log('open recordings');
+        console.log(surveyId);
+        this.router.navigate(['survey/' + surveyId + '/recordings']);
     }
 }

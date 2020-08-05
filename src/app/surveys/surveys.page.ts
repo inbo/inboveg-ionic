@@ -17,15 +17,9 @@ export class SurveysPage {
                 this.surveys = data;
             });
 
-        // fireStore.doc('users/1/surveys/1').set({
-        //     survey: '1'
-        // });
     }
 
     itemTapped(event, item) {
-        const options = {
-            item
-        };
         // @ts-ignore
         this.router.navigate(['survey-detail/' + item.id.value], item);
     }

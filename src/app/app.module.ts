@@ -22,7 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
         IonicModule.forRoot(),
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
+        AngularFirestoreModule.enablePersistence(),
         HttpClientModule
     ],
     providers: [
