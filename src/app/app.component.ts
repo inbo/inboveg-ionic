@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
             icon: 'mail'
         }
     ];
-    public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
     private items: Observable<unknown[]>;
 
     constructor(
@@ -51,9 +50,4 @@ export class AppComponent implements OnInit {
         }
     }
 
-    openRecordings(surveyId: string) {
-        console.log('open recordings');
-        console.log(surveyId);
-        this.router.navigate(['survey/' + surveyId + '/recordings']);
-    }
 }
