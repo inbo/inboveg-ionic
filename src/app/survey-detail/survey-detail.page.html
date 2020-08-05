@@ -8,8 +8,55 @@
 </ion-header>
 
 <ion-content>
-  <p>{{survey.name}}</p>
-  <p>{{survey.description}}</p>
-  <ion-button (click)="makeSurveyOfflineAvailable()">Offline beschikbaar maken</ion-button>
+    <div class="px-4 py-5 sm:p-0">
+      <dl>
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Externe referentie
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            {{survey.externalReference}}
+          </dd>
+        </div>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Beschrijving
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            {{survey.description}}
+          </dd>
+        </div>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Periode
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            Van {{survey.begin}} tot {{survey.end}}
+          </dd>
+        </div>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Eigenaar
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            {{survey.owner}}
+          </dd>
+        </div>
+        <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+          <dt class="text-sm leading-5 font-medium text-gray-500">
+            Opnametype
+          </dt>
+          <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            {{survey.recordingType}}
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+      <button class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out"
+              (click)="makeSurveyOfflineAvailable()">
+        Offline beschikbaar maken
+      </button>
+    </div>
 
 </ion-content>

@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class SurveysPage {
     surveys: any = [];
 
-    constructor(public router: Router, private fireStore: AngularFirestore, public http: HttpClient) {
+    constructor(public router: Router, public http: HttpClient) {
         this.http.get('http://localhost:8080/rest/ionic/survey/overview')
             .subscribe(data => {
                 this.surveys = data;
@@ -20,7 +20,9 @@ export class SurveysPage {
     }
 
     itemTapped(event, item) {
+        console.log('item tapped');
+        console.log(item.id.value);
         // @ts-ignore
-        this.router.navigate(['survey-detail/' + item.id.value], item);
+        this.router.navigate(['survey/' + item.id.value], item);
     }
 }

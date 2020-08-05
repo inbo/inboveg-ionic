@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./surveys/surveys.module').then( m => m.SurveysPageModule)
   },
   {
-    path: 'survey-detail/:id',
+    path: 'survey/:id',
     loadChildren: () => import('./survey-detail/survey-detail.module').then( m => m.SurveyDetailPageModule)
   },
   {
