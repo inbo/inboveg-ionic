@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -14,7 +14,8 @@ export class SurveyDetailPage {
         description: ''
     };
 
-    constructor(private activatedRoute: ActivatedRoute, private firestore: AngularFirestore, private http: HttpClient) {
+    constructor(private activatedRoute: ActivatedRoute, private firestore: AngularFirestore, private http: HttpClient,
+                private router: Router) {
         this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/overview')
             .subscribe(data => {
                 this.survey = data;
@@ -30,6 +31,7 @@ export class SurveyDetailPage {
                     survey: this.survey,
                     recordings: content
                 });
+                this.router.navigate(['offline/survey/' + this.survey.id.value]);
             });
 
     }
