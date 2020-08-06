@@ -20,9 +20,6 @@ export class SurveysPage {
     }
 
     itemTapped(event, item) {
-        console.log('item tapped');
-        console.log(item.id.value);
-        // @ts-ignore
         this.router.navigate(['survey/' + item.id.value], item);
     }
 }

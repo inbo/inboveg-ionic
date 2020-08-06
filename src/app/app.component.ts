@@ -19,6 +19,11 @@ export class AppComponent implements OnInit {
             title: 'Surveys',
             url: '/surveys',
             icon: 'mail'
+        },
+        {
+            title: 'Offline surveys',
+            url: '/offline/surveys',
+            icon: 'mail'
         }
     ];
     private items: Observable<unknown[]>;

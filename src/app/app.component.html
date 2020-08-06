@@ -16,7 +16,7 @@
           <ion-list-header>Offline beschikbaar</ion-list-header>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let label of items | async" >
-            <ion-item routerDirection="root" [routerLink]="['/survey/' + label.survey.id.value + '/recordings']" lines="none">
+            <ion-item routerDirection="root" [routerLink]="['/offline/survey/' + label.survey.id.value]" lines="none">
               <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
               <ion-label>{{ label.survey.name }}</ion-label>
             </ion-item>
