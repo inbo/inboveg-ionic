@@ -12,7 +12,7 @@ export class SurveysPage {
     surveys: any = [];
 
     constructor(public router: Router, public http: HttpClient) {
-        this.http.get('http://localhost:8080/rest/ionic/survey/overview')
+        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview')
             .subscribe(data => {
                 this.surveys = data;
             });

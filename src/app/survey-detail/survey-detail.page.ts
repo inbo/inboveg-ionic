@@ -16,7 +16,7 @@ export class SurveyDetailPage {
 
     constructor(private activatedRoute: ActivatedRoute, private firestore: AngularFirestore, private http: HttpClient) {
         console.log('detail page');
-        this.http.get('http://localhost:8080/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/overview')
+        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/overview')
             .subscribe(data => {
                 this.survey = data;
             });
@@ -24,7 +24,7 @@ export class SurveyDetailPage {
 
     makeSurveyOfflineAvailable() {
         console.log('make offline available');
-        this.http.get('http://localhost:8080/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/recordings')
+        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/' + this.activatedRoute.snapshot.paramMap.get('id') + '/recordings')
             .subscribe(data => {
                 // @ts-ignore
                 const content = data.content;

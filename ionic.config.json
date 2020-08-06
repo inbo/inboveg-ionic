@@ -1,7 +1,8 @@
 {
   "name": "inboveg-ionic2",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
