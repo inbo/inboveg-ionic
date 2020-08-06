@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
     firebase: {
-      apiKey: '',
-      authDomain: '',
-      databaseURL: '',
-      projectId: '',
-      storageBucket: '',
-      messagingSenderId: '',
-      appId: ''
+      apiKey: "AIzaSyDc207RxFsxAY4ubpXR-7-9AuiJueAyE4A",
+      authDomain: "inboveg-ionic-7e437.firebaseapp.com",
+      databaseURL: "https://inboveg-ionic-7e437.firebaseio.com",
+      projectId: "inboveg-ionic-7e437",
+      storageBucket: "inboveg-ionic-7e437.appspot.com",
+      messagingSenderId: "106056735373",
+      appId: "1:106056735373:web:a80d14fbd18e931f2de0c4"
   }
 };
 

@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -10,9 +10,24 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
+
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
+function initializeKeycloak(keycloak: KeycloakService) {
+    return () =>
+        keycloak.init({
+            config: {
+                url: 'https://keycloak-dev.inbo.be/auth',
+                realm: 'Inbo-Extranet',
+                clientId: 'inboveg-dev-public'
+            },
+            initOptions: {
+                onLoad: 'login-required'
+            },
+        });
+}
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,12 +38,19 @@ import {HttpClientModule} from '@angular/common/http';
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule.enablePersistence(),
-        HttpClientModule
+        HttpClientModule,
+        KeycloakAngularModule
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService],
+        }
     ],
     bootstrap: [AppComponent]
 })
