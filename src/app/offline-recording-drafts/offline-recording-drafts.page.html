@@ -8,15 +8,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="bg-white shadow overflow-hidden sm:rounded-md" *ngFor="let item of items | async" (click)="itemTapped($event, item);">
+  <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul>
-      <li>
+      <li *ngFor="let item of items | async">
         <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-          <div class="px-4 py-4 sm:px-6">
-            <div class="flex items-center justify-between">
-              <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                {{item.payload.doc.data().userReference}}
+          <div class="px-4 py-4 flex items-center sm:px-6">
+            <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+              <div>
+                <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+                  {{item.payload.doc.data().userReference}}
+                </div>
+                <div class="mt-2 flex">
+                  <div class="flex items-center text-sm leading-5 text-gray-500">
+                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                    </svg>
+                    <span>
+                    {{item.payload.doc.data().date}}
+<!--                    <time datetime="2020-01-07">January 7, 2020</time>-->
+                  </span>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="ml-5 flex-shrink-0">
+              <span class="inline-flex rounded-md shadow-sm">
+                <button (click)="itemTapped($event, item);" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                  Doorsturen
+                </button>
+              </span>
             </div>
           </div>
         </div>
