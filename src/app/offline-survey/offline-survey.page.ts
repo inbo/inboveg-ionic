@@ -44,4 +44,13 @@ export class OfflineSurveyPage implements OnInit {
     ngOnInit() {
     }
 
+    navigateToOfflineSurveyCreateRecording() {
+        // @ts-ignore
+        this.router.navigate(['offline/survey/' + this.survey.id.value + '/recording/new']);
+    }
+
+    navigateToOfflineSurveyNewRecordings() {
+        // @ts-ignore
+        this.router.navigate(['offline/survey/' + this.survey.id.value + '/drafts']);
+    }
 }

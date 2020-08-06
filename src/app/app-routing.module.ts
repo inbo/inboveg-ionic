@@ -28,8 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./recordings/recordings.module').then( m => m.RecordingsPageModule)
   },
   {
-    path: 'offline-recording-new',
+    path: 'offline/survey/:id/recording/new',
     loadChildren: () => import('./offline-recording-new/offline-recording-new.module').then( m => m.OfflineRecordingNewPageModule)
+  },
+  {
+    path: 'offline/survey/:id/drafts',
+    loadChildren: () => import('./offline-recording-drafts/offline-recording-drafts.module').then( m => m.OfflineRecordingDraftsPageModule)
   }
 ];
 

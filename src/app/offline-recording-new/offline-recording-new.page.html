@@ -1,9 +1,92 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>offline-recording-new</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Nieuwe opname</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        <form>
+            <div>
+                <div>
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Algemeen
+                        </h3>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                            Algmene informatie over de opmname.
+                        </p>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="observer" class="block text-sm font-medium leading-5 text-gray-700">
+                                Waarnemer
+                            </label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input [(ngModel)]="model.observer" name="observer" id="observer" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="date" class="block text-sm font-medium leading-5 text-gray-700">
+                                Datum
+                            </label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input [(ngModel)]="model.date" name="date" id="date" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="userReference" class="block text-sm font-medium leading-5 text-gray-700">
+                                Referentie gebruiker
+                            </label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input [(ngModel)]="model.userReference" name="userReference" id="userReference" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 border-t border-gray-200 pt-8">
+                    <div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Locatie
+                        </h3>
+                        <p class="mt-1 text-sm leading-5 text-gray-500">
+                            Meer info over de locatie van de opname.
+                        </p>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="location" class="block text-sm font-medium leading-5 text-gray-700">
+                                Locatie
+                            </label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input [(ngModel)]="model.location" name="location" id="location" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mt-8 border-t border-gray-200 pt-5">
+                <div class="flex justify-end">
+                  <span class="inline-flex rounded-md shadow-sm">
+                    <button (click)="this.navCtrl.pop()" type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                      Annuleren
+                    </button>
+                  </span>
+                    <span class="ml-3 inline-flex rounded-md shadow-sm">
+                    <button (click)="this.save()" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                      Bewaren
+                    </button>
+                  </span>
+                </div>
+            </div>
+        </form>
+    </div>
 </ion-content>
