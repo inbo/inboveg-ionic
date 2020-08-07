@@ -9,17 +9,55 @@ import {Router} from '@angular/router';
     styleUrls: ['./surveys.page.scss']
 })
 export class SurveysPage {
-    surveys: any = [];
+    surveys: any = {
+        content: [],
+        pageable: {
+            sort: {
+                sorted: true,
+                unsorted: false,
+                empty: false
+            },
+            pageNumber: 0,
+            pageSize: 10,
+            offset: 0,
+            paged: true,
+            unpaged: false
+        },
+        totalPages: 22,
+        totalElements: 211,
+        last: false,
+        first: true,
+        sort: {
+            sorted: true,
+            unsorted: false,
+            empty: false
+        },
+        numberOfElements: 10,
+        size: 10,
+        number: 0,
+        empty: false
+    };
 
     constructor(public router: Router, public http: HttpClient) {
-        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview')
-            .subscribe(data => {
-                this.surveys = data;
-            });
-
+        this.fetchData(1);
     }
 
     itemTapped(event, item) {
         this.router.navigate(['survey/' + item.id.value], item);
+    }
+
+    previousPage(page: any) {
+        this.fetchData(page);
+    }
+
+    nextPage(page: any) {
+        this.fetchData(page);
+    }
+    private fetchData(pageNumber: any) {
+        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview?page=' + pageNumber)
+            .subscribe(data => {
+                console.log(data);
+                this.surveys = data;
+            });
     }
 }
