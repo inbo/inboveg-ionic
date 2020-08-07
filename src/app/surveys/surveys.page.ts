@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -9,6 +8,10 @@ import {Router} from '@angular/router';
     styleUrls: ['./surveys.page.scss']
 })
 export class SurveysPage {
+    criteria: any = {
+        name: ''
+    };
+
     surveys: any = {
         content: [],
         pageable: {
@@ -53,8 +56,9 @@ export class SurveysPage {
     nextPage(page: any) {
         this.fetchData(page);
     }
+
     private fetchData(pageNumber: any) {
-        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview?page=' + pageNumber)
+        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview?name=' + this.criteria.name + '&page=' + pageNumber)
             .subscribe(data => {
                 console.log(data);
                 this.surveys = data;

@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="mt-1 relative rounded-md shadow-sm">
+    <input (keyup)="fetchData(1)" [(ngModel)]="criteria.name" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Filter op naam ...">
+  </div>
   <div class="bg-white shadow overflow-hidden sm:rounded-md" *ngFor="let item of surveys.content" (click)="itemTapped($event, item);">
     <ul>
       <li>
