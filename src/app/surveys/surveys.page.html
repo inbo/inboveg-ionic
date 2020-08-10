@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <button (click)="keycloakLogin(true)">Login</button>
+  <p>Welkom username {{username}}</p>
+  <p *ngIf="user !== undefined">Welkom {{user.preferred_username}}</p>
   <div class="mt-1 relative rounded-md shadow-sm">
     <input (keyup)="fetchData(1)" [(ngModel)]="criteria.name" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Filter op naam ...">
   </div>

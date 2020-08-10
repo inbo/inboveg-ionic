@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -12,22 +12,8 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
+import {IonicKeycloakAuthModule} from '@cmotion/ionic-keycloak-auth';
 
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
-function initializeKeycloak(keycloak: KeycloakService) {
-    return () =>
-        keycloak.init({
-            config: {
-                url: 'https://keycloak-dev.inbo.be/auth',
-                realm: 'Inbo-Extranet',
-                clientId: 'inboveg-dev-public'
-            },
-            initOptions: {
-                onLoad: 'login-required'
-            },
-        });
-}
 
 
 @NgModule({
@@ -40,18 +26,24 @@ function initializeKeycloak(keycloak: KeycloakService) {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule.enablePersistence(),
         HttpClientModule,
-        KeycloakAngularModule
+        IonicKeycloakAuthModule.forRoot({
+            jwtModuleOptions: {
+                getToken: () => JSON.parse(localStorage.getItem('token')),
+                setToken: (value) => localStorage.setItem('token', value ? JSON.stringify(value) : null),
+                whitelistedDomains: ['keycloak-dev.inbo.be', '*'],
+            },
+            deepLinksConfig: {
+                deepLinkingScheme: 'myapp'
+            },
+            keycloakConfig: {
+                jsonConfig: () => environment.keycloakConfig
+            }
+        })
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [KeycloakService],
-        }
     ],
     bootstrap: [AppComponent]
 })
