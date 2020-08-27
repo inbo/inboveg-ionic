@@ -31,3 +31,7 @@ npm-debug.log*
 /www
 
 .gradle
+
+# ignores for ionic
+/android
+/www

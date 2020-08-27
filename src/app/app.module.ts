@@ -5,6 +5,7 @@ import {RouteReuseStrategy} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {DatePicker} from '@ionic-native/date-picker/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -13,7 +14,8 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HttpClientModule} from '@angular/common/http';
 import {IonicKeycloakAuthModule} from '@cmotion/ionic-keycloak-auth';
-
+import {DatePipe} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {IonicKeycloakAuthModule} from '@cmotion/ionic-keycloak-auth';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule.enablePersistence(),
         HttpClientModule,
+        ReactiveFormsModule,
         IonicKeycloakAuthModule.forRoot({
             jwtModuleOptions: {
                 getToken: () => JSON.parse(localStorage.getItem('token')),
@@ -44,6 +47,8 @@ import {IonicKeycloakAuthModule} from '@cmotion/ionic-keycloak-auth';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        DatePicker,
+        DatePipe
     ],
     bootstrap: [AppComponent]
 })

@@ -6,8 +6,6 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {DocumentChangeType} from '@angular/fire/firestore/interfaces';
-import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-offline-recording-drafts',
@@ -16,7 +14,7 @@ import {map} from 'rxjs/operators';
 })
 export class OfflineRecordingDraftsPage implements OnInit {
 
-    private items: Observable<unknown[]>;
+    items: Observable<any[]>;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -27,18 +25,24 @@ export class OfflineRecordingDraftsPage implements OnInit {
         public router: Router,
         private http: HttpClient
     ) {
-        const collectionReference = this.firestore.collection(`users/kevin_vandenelshout/new-recordings/surveys/${this.activatedRoute.snapshot.paramMap.get('id')}`);
-        this.items = collectionReference.snapshotChanges();
+    }
+
+    retrieveRecordings() {
+        const collectionRef = this.firestore
+            .collection(`users/kevin_vandenelshout/new-recordings/surveys/${this.activatedRoute.snapshot.paramMap.get('id')}`);
+        this.items = collectionRef.snapshotChanges();
     }
 
     ngOnInit() {
+        this.retrieveRecordings();
     }
 
     itemTapped(event, item) {
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
-        this.http.post('https://inboveg-dev.inbo.be/rest/ionic/survey/' + id + '/start', item.payload.doc.data())
+        const surveyId = this.activatedRoute.snapshot.paramMap.get('id');
+        const docId = item.payload.doc.id;
+        this.http.post(`https://inboveg-dev.inbo.be/rest/ionic/survey/${surveyId}/start`, item.payload.doc.data())
             .subscribe(value => {
-                this.firestore.doc(`users/kevin_vandenelshout/new-recordings/surveys/${id}/${item.payload.doc.id}`).delete();
+                this.firestore.doc(`users/kevin_vandenelshout/new-recordings/surveys/${surveyId}/${docId}`).delete();
             });
     }
 }

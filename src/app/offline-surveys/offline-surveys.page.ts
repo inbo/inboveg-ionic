@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
     styleUrls: ['./offline-surveys.page.scss'],
 })
 export class OfflineSurveysPage implements OnInit {
-    private items: Observable<unknown[]>;
+    items: Observable<unknown[]>;
 
     constructor(
         private platform: Platform,

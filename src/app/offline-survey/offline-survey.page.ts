@@ -14,7 +14,7 @@ export class OfflineSurveyPage implements OnInit {
 
     private document: AngularFirestoreDocument;
     public item: Observable<DocumentData>;
-    private survey = {
+    survey = {
         name: '',
         externalReference: '',
         description: '',

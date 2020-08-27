@@ -42,9 +42,9 @@ export class SurveysPage {
         number: 0,
         empty: false
     };
-    private name: string;
-    private user: IDTokenDecoded;
-    private username: string;
+    name: string;
+    user: IDTokenDecoded;
+    username: string;
 
     constructor(public router: Router, public http: HttpClient, public keycloakAuthService: KeycloakAuthService,
                 public userData: UserDataService) {
@@ -78,8 +78,9 @@ export class SurveysPage {
         this.fetchData(page);
     }
 
-    private fetchData(pageNumber: any) {
-        this.http.get('https://inboveg-dev.inbo.be/rest/ionic/survey/overview?name=' + this.criteria.name + '&page=' + pageNumber)
+    fetchData(pageNumber: any) {
+        const url = 'https://inboveg-dev.inbo.be' + '/rest/ionic/survey/overview?name=' + this.criteria.name + '&page=' + pageNumber;
+        this.http.get(url)
             .subscribe(data => {
                 console.log(data);
                 this.surveys = data;

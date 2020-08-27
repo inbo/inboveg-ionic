@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
             icon: 'mail'
         }
     ];
-    private items: Observable<unknown[]>;
+    items: Observable<unknown[]>;
 
     constructor(
         private platform: Platform,

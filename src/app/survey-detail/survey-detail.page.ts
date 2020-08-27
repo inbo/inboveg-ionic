@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
     styleUrls: ['./survey-detail.page.scss'],
 })
 export class SurveyDetailPage {
-    private survey: any = {
+    survey: any = {
         name: '',
         description: ''
     };

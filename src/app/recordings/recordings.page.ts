@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import DocumentData = firebase.firestore.DocumentData;
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-recordings',
@@ -13,23 +14,20 @@ import DocumentData = firebase.firestore.DocumentData;
 })
 export class RecordingsPage implements OnInit {
     private document: AngularFirestoreDocument;
-    public item: Observable<DocumentData>;
-    private data: any;
+    item: Observable<DocumentData>;
+    data: any;
 
-    constructor(private activatedRoute: ActivatedRoute, private firestore: AngularFirestore, private http: HttpClient) {
+    constructor(private activatedRoute: ActivatedRoute, private firestore: AngularFirestore, private http: HttpClient, private navCtrl: NavController) {
         this.document = this.firestore.doc(`users/kevin_vandenelshout/surveys/${this.activatedRoute.snapshot.paramMap.get('id')}`);
         this.item = this.document.valueChanges();
 
         this.data = this.item.pipe(map(value => value.recordings));
-
-        // .snapshotChanges().pipe(map(changes => {
-        //     console.log('From cache: ' + changes.payload.metadata.fromCache);
-        //     console.log(changes.payload.data());
-        //     return changes;
-        // }));
     }
 
     ngOnInit() {
     }
 
+    editRecording() {
+        console.log('edit recording');
+    }
 }
