@@ -35,7 +35,7 @@
     "@ionic/storage": "^2.3.0",
     "cordova-android": "^8.1.0",
     "cordova-plugin-inappbrowser": "^4.0.0",
-    "firebase": "^7.17.1",
+    "firebase": "^12.13.0",
     "keycloak-js": "^10.0.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
